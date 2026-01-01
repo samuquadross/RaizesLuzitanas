@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Raízes Lusitanas - Assessoria</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.5;
+            color: #590e11;
+            background: #fff;
+        }
+        header {
+            background: #ffffff; /* ← alterado */
+            color: white;
+            padding: 0.5rem 0;
+            text-align: center;
+        }
+        .logo {
+            font-size: 2.1rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        /* === ADICIONADO: Estilo para a imagem da logo === */
+        .logo-img {
+            max-height: 80px;          /* Ajuste este valor se quiser maior/menor */
+            width: auto;
+            display: block;
+            margin: 0 auto;            /* Centraliza perfeitamente */
+        }
+        .hero {
+            height: 75vh;
+            min-height: 280px;
+            background-image: url('https://i.postimg.cc/4xd2Qp7H/pexels-fotios-photos-1534560.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(120, 20, 29, 0.4); /* ← alterado (equivalente ao #78141d) */
+        }
+        .services {
+            max-width: 1000px;
+            margin: 2.5rem auto;
+            padding: 0 1rem;
+        }
+        .services h2 {
+            text-align: center;
+            color: #78141d; /* ← alterado */
+            font-size: 1.9rem;
+            margin-bottom: 1.8rem;
+        }
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.4rem;
+        }
+        .service-card {
+            background: white;
+            padding: 1.4rem;
+            border: 2px solid #78141d; /* ← alterado */
+            border-radius: 8px;
+            transition: all 0.25s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(120,20,29,0.15); /* ← alterado */
+        }
+        .service-card h3 {
+            color: #78141d; /* ← alterado */
+            font-size: 1.35rem;
+            margin-bottom: 0.7rem;
+        }
+        .service-card p {
+            font-size: 0.95rem;
+        }
+        .cta {
+            background: #78141d; /* ← alterado */
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+        .cta h2 {
+            font-size: 1.9rem;
+            margin-bottom: 1rem;
+        }
+        .cta p {
+            font-size: 1.1rem;
+            margin-bottom: 1.2rem;
+        }
+        .whatsapp-btn {
+            background: white;
+            color: #78141d; /* ← alterado */
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            font-size: 1.15rem;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            border: 2px solid white;
+            transition: all 0.25s;
+        }
+        .whatsapp-btn:hover {
+            background: #f8f8f8;
+            transform: scale(1.03);
+        }
+        footer {
+            background: #590e11 ; /* ← alterado */
+            color: white;
+            text-align: center;
+            padding: 1.2rem;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .logo { font-size: 1.8rem; }
+            .logo-img {
+                max-height: 60px;      /* Menor no mobile para caber melhor */
+            }
+            .services h2 { font-size: 1.6rem; }
+            .cta h2 { font-size: 1.7rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- === ADICIONADO: Logo como imagem (substitui o texto) === -->
+        <img src="https://i.postimg.cc/W1wWVSBy/Logo-removebg-preview.png" alt="Raízes Lusitanas" class="logo-img">
+    </header>
+    <div class="hero"></div>
+    <section class="services">
+        <h2>Nossos Serviços</h2>
+      
+        <div class="service-grid">
+            <div class="service-card">
+                <h3>Consulta Inicial</h3>
+                <p>Análise do seu caso, orientação e checklist personalizado. Ideal para quem está começando.</p>
+            </div>
+            <div class="service-card">
+                <h3>Visto de Trabalho</h3>
+                <p>Assessoria completa para vistos de procura de trabalho, D1, D2, D3 e outros.</p>
+            </div>
+            <div class="service-card">
+                <h3>Português para Estrangeiros</h3>
+                <p>Curso de Português para Estrangeiros A1 & A2</p>
+            </div>
+        </div>
+    </section>
+    <section class="cta">
+        <h2>Quer começar com segurança?</h2>
+        <p>Entre em contato agora pelo WhatsApp!</p>
+      
+        <a href="https://wa.me/5511999999999?text=Olá!%20Quero%20informações%20sobre%20assessoria%20para%20Portugal"
+           class="whatsapp-btn" target="_blank">
+            Falar no WhatsApp
+        </a>
+    </section>
+    <footer>
+        <p>© 2026 Raízes Lusitanas - Assessoria Migratória</p>
+    </footer>
+</body>
+</html>
