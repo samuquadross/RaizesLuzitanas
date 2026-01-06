@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Raízes Lusitanas - Assessoria</title>
+    <link rel="icon" href="https://i.postimg.cc/j2fK1TRP/Emblema-inspirado-no-escudo-de-Portugal.png" type="image/x-icon">
     <style>
         * {
             margin: 0;
@@ -12,159 +13,556 @@
         }
         body {
             font-family: 'Segoe UI', system-ui, sans-serif;
-            line-height: 1.5;
+            line-height: 1.6;
             color: #590e11;
             background: #fff;
         }
         header {
-            background: #ffffff; /* ← alterado */
-            color: white;
-            padding: 0.5rem 0;
-            text-align: center;
+            background: #ffffff;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
         }
-        .logo {
-            font-size: 2.1rem;
-            font-weight: bold;
-            letter-spacing: 1px;
+        .header-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        /* === ADICIONADO: Estilo para a imagem da logo === */
         .logo-img {
-            max-height: 80px;          /* Ajuste este valor se quiser maior/menor */
+            max-height: 70px;
             width: auto;
-            display: block;
-            margin: 0 auto;            /* Centraliza perfeitamente */
         }
+
+        /* Hamburguer animado - transformado em X */
+        .menu-toggle {
+            display: none;
+            position: relative;
+            width: 44px;
+            height: 44px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin-right: 0;
+        }
+
+        .menu-toggle::before,
+        .menu-toggle::after,
+        .menu-toggle span {
+            content: '';
+            position: absolute;
+            width: 32px;
+            height: 4px;
+            background: #78141d;
+            border-radius: 2px;
+            left: 6px;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .menu-toggle span {
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .menu-toggle::before {
+            top: 10px;
+        }
+
+        .menu-toggle::after {
+            bottom: 10px;
+        }
+
+        .menu-toggle.active::before {
+            transform: rotate(135deg);
+            top: 50%;
+        }
+
+        .menu-toggle.active::after {
+            transform: rotate(-135deg);
+            bottom: 50%;
+        }
+
+        .menu-toggle.active span {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.2rem;
+            margin: 0;
+            transition: all 0.4s ease;
+        }
+        nav a {
+            color: #78141d;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #590e11;
+        }
+
+        /* HERO */
         .hero {
-            height: 75vh;
-            min-height: 280px;
-            background-image: url('https://i.postimg.cc/4xd2Qp7H/pexels-fotios-photos-1534560.jpg');
+            height: 85vh;
+            min-height: 560px;
+            background-image: url('https://i.postimg.cc/8TWr9D6x/Design-sem-nome-(6).png');
             background-size: cover;
             background-position: center;
             position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
         }
-        .hero::after {
+        .hero::before {
             content: "";
             position: absolute;
             inset: 0;
-            background: rgba(120, 20, 29, 0.4); /* ← alterado (equivalente ao #78141d) */
+            background: linear-gradient(to right, rgba(120, 20, 29, 0.85), rgba(120, 20, 29, 0.4) 50%, transparent 100%);
+            z-index: 1;
         }
-        .services {
-            max-width: 1000px;
-            margin: 2.5rem auto;
-            padding: 0 1rem;
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            text-align: left;
+            max-width: 650px;
+            margin-left: 150px;
         }
-        .services h2 {
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1.2s ease forwards 0.4s;
+        }
+        .hero-content p {
+            font-size: 1.8rem;
+            font-weight: 400;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1.2s ease forwards 0.7s;
+        }
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.2rem;
+        }
+        h2.section-title {
+            color: #78141d;
             text-align: center;
-            color: #78141d; /* ← alterado */
-            font-size: 1.9rem;
-            margin-bottom: 1.8rem;
+            font-size: 2.2rem;
+            margin-bottom: 2.5rem;
         }
+        .about .section-title, .faq .section-title {
+            color: white;
+        }
+        .about {
+            padding: 5rem 0;
+            background: #78141d;
+            color: white;
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        .about-image {
+            background: #f5f0f0;
+            height: 380px;
+            border-radius: 12px;
+            border: 2px solid white;
+            overflow: hidden;
+        }
+        .about-text h3 {
+            color: white;
+            margin-bottom: 1.2rem;
+        }
+        .about-text p {
+            color: #f8f0f0;
+            margin-bottom: 1.1rem;
+        }
+
+        /* MOBILE */
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                padding: 1rem;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                transform: translateY(-20px);
+                opacity: 0;
+                transition: all 0.4s ease-in-out;
+            }
+            nav ul.active {
+                display: flex;
+                transform: translateY(0);
+                opacity: 1;
+            }
+            nav li { margin: 1rem 0; text-align: center; }
+
+            /* Hero mobile */
+            .hero {
+                background-image: url('https://i.postimg.cc/MG9LbL25/Design-sem-nome-(7).png');
+                height: 90vh;
+                min-height: 680px;
+                align-items: flex-start;
+                padding-top: 10rem;
+                justify-content: center;
+            }
+            .hero::before { background: transparent; }
+            .hero-content {
+                text-align: center;
+                max-width: 90%;
+                margin-left: 0;
+                padding: 0 5%;
+            }
+            .hero-content h1 { font-size: 2.8rem; }
+            .hero-content p { font-size: 1.4rem; }
+
+            /* Sobre Nós mobile: 1 coluna + imagem em cima */
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .about-image {
+                height: 320px;
+            }
+            .about-text {
+                text-align: center;
+                padding: 0 1rem;
+            }
+        }
+
+        .how-it-works { padding: 5rem 0; background: #fff; }
+        .steps-wrapper {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 1.2rem;
+            justify-content: center;
+            align-items: center;
+            max-width: 100%;
+        }
+        .step-card {
+            background: white;
+            padding: 2rem 1.6rem;
+            border: 2px solid #78141d;
+            border-radius: 12px;
+            text-align: center;
+            width: 310px;
+            min-width: 280px;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        .step-card:hover { transform: translateY(-8px); }
+        .step-number {
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #78141d;
+            color: white;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.4rem;
+        }
+        .step-card h3 { color: #78141d; margin: 1.3rem 0 0.9rem; }
+        .arrow-between {
+            font-size: 3.2rem;
+            color: #78141d;
+            font-weight: bold;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+        .faq {
+            padding: 5rem 0;
+            background: #78141d url('https://i.postimg.cc/y6pBsZFN/abstract-luxury-soft-red-background-christmas-valentines-layout-designstudioroom-web-template-busine.jpg') center/cover no-repeat;
+            position: relative;
+            color: #590e11;
+        }
+        .faq::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.20);
+            z-index: 1;
+            filter: contrast(1.15) brightness(0.95);
+        }
+        .faq .container { position: relative; z-index: 2; }
+        .faq-item {
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.92);
+            box-shadow: 0 6px 16px rgba(120, 20, 29, 0.12);
+        }
+        .faq-question {
+            background: #f5ecec;
+            padding: 1.1rem 1.4rem;
+            cursor: pointer;
+            font-weight: 600;
+            color: #78141d;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+        .faq-question::after {
+            content: '＋';
+            font-size: 1.6rem;
+            transition: transform 0.3s;
+        }
+        .faq-item input[type="checkbox"] { display: none; }
+        .faq-item input[type="checkbox"]:checked + .faq-question::after { transform: rotate(45deg); }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            padding: 0 1.4rem;
+            background: white;
+        }
+        .faq-item input[type="checkbox"]:checked ~ .faq-answer {
+            max-height: 300px;
+            padding: 1.4rem;
+        }
+        .services { padding: 5rem 0; background: #fff; }
         .service-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.4rem;
+            gap: 1.6rem;
         }
         .service-card {
             background: white;
-            padding: 1.4rem;
-            border: 2px solid #78141d; /* ← alterado */
-            border-radius: 8px;
+            padding: 1.6rem;
+            border: 2px solid #78141d;
+            border-radius: 10px;
             transition: all 0.25s ease;
         }
         .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(120,20,29,0.15); /* ← alterado */
+            transform: translateY(-6px);
+            box-shadow: 0 10px 25px rgba(120,20,29,0.12);
         }
-        .service-card h3 {
-            color: #78141d; /* ← alterado */
-            font-size: 1.35rem;
-            margin-bottom: 0.7rem;
-        }
-        .service-card p {
-            font-size: 0.95rem;
-        }
+        .service-card h3 { color: #78141d; }
         .cta {
-            background: #78141d; /* ← alterado */
+            background: #78141d;
             color: white;
             text-align: center;
-            padding: 3rem 1rem;
-        }
-        .cta h2 {
-            font-size: 1.9rem;
-            margin-bottom: 1rem;
-        }
-        .cta p {
-            font-size: 1.1rem;
-            margin-bottom: 1.2rem;
+            padding: 4rem 1rem;
         }
         .whatsapp-btn {
             background: white;
-            color: #78141d; /* ← alterado */
-            padding: 0.9rem 2rem;
+            color: #78141d;
+            padding: 1rem 2.4rem;
             border-radius: 50px;
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             font-weight: bold;
             text-decoration: none;
             display: inline-block;
             border: 2px solid white;
-            transition: all 0.25s;
+            transition: all 0.3s;
         }
         .whatsapp-btn:hover {
             background: #f8f8f8;
-            transform: scale(1.03);
+            transform: translateY(-3px);
         }
         footer {
-            background: #590e11 ; /* ← alterado */
+            background: #590e11;
             color: white;
             text-align: center;
-            padding: 1.2rem;
-            font-size: 0.9rem;
+            padding: 2rem 1rem;
         }
-        @media (max-width: 768px) {
-            .logo { font-size: 1.8rem; }
-            .logo-img {
-                max-height: 60px;      /* Menor no mobile para caber melhor */
-            }
-            .services h2 { font-size: 1.6rem; }
-            .cta h2 { font-size: 1.7rem; }
+        .social-links a {
+            color: white;
+            font-size: 2rem;
+            margin: 0 1.5rem;
+            transition: color 0.3s;
+            text-decoration: none;
         }
+        .social-links a:hover { color: #fff; }
     </style>
 </head>
 <body>
     <header>
-        <!-- === ADICIONADO: Logo como imagem (substitui o texto) === -->
-        <img src="https://i.postimg.cc/W1wWVSBy/Logo-removebg-preview.png" alt="Raízes Lusitanas" class="logo-img">
+        <div class="header-container">
+            <img src="https://i.postimg.cc/W1wWVSBy/Logo-removebg-preview.png" alt="Raízes Lusitanas" class="logo-img">
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+            </button>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#como-funciona">Como Funciona</a></li>
+                    <li><a href="#duvidas">Dúvidas</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
-    <div class="hero"></div>
-    <section class="services">
-        <h2>Nossos Serviços</h2>
-      
-        <div class="service-grid">
-            <div class="service-card">
-                <h3>Consulta Inicial</h3>
-                <p>Análise do seu caso, orientação e checklist personalizado. Ideal para quem está começando.</p>
-            </div>
-            <div class="service-card">
-                <h3>Visto de Trabalho</h3>
-                <p>Assessoria completa para vistos de procura de trabalho, D1, D2, D3 e outros.</p>
-            </div>
-            <div class="service-card">
-                <h3>Português para Estrangeiros</h3>
-                <p>Curso de Português para Estrangeiros A1 & A2</p>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Raízes Lusitanas</h1>
+            <p>Seu recomeço na Europa começa com segurança e confiança</p>
+        </div>
+    </section>
+
+    <section class="services" id="servicos">
+        <div class="container">
+            <h2 class="section-title">Nossos Serviços</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <h3>Consulta Inicial</h3>
+                    <p>Análise do seu caso, orientação e checklist personalizado. Ideal para quem está começando.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Visto de Trabalho</h3>
+                    <p>Assessoria completa para vistos de procura de trabalho, D1, D2, D3 e outros.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Português para Estrangeiros</h3>
+                    <p>Curso de Português para Estrangeiros A1 & A2</p>
+                </div>
             </div>
         </div>
     </section>
-    <section class="cta">
-        <h2>Quer começar com segurança?</h2>
-        <p>Entre em contato agora pelo WhatsApp!</p>
-      
-        <a href="https://wa.me/5511999999999?text=Olá!%20Quero%20informações%20sobre%20assessoria%20para%20Portugal"
-           class="whatsapp-btn" target="_blank">
-            Falar no WhatsApp
-        </a>
+
+    <section class="about" id="sobre">
+        <div class="container">
+            <h2 class="section-title">Sobre Nós</h2>
+            <div class="about-grid">
+                <div class="about-image">
+                    <img src="https://i.postimg.cc/csHdpBKK/Design-sem-nome-(4).png"
+                         alt="Nossa equipe Raízes Lusitanas"
+                         style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="about-text">
+                    <h3>Quem somos</h3>
+                    <p>A Raízes Lusitanas nasceu do sonho de ajudar pessoas a construírem uma nova vida em Portugal com segurança, transparência e carinho.</p>
+                    <p>Somos uma assessoria especializada em imigração para Portugal, formada por profissionais que já passaram pelo processo migratório e entendem na prática todas as dores e desafios que esse caminho envolve.</p>
+                    <p>Nosso objetivo é simples: tornar o seu processo o mais tranquilo e previsível possível, para que você possa focar no que realmente importa — o recomeço.</p>
+                </div>
+            </div>
+        </div>
     </section>
+
+    <section class="how-it-works" id="como-funciona">
+        <div class="container">
+            <h2 class="section-title">Como Funciona</h2>
+            <div class="steps-wrapper">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Contato Inicial</h3>
+                    <p>Você fala com a gente por WhatsApp ou e-mail e conta um pouco da sua situação e objetivo.</p>
+                </div>
+                <div class="arrow-between">→</div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Consulta Personalizada</h3>
+                    <p>Agendamos uma conversa detalhada para analisar seu caso e apresentar o melhor caminho.</p>
+                </div>
+                <div class="arrow-between">→</div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Assessoria Completa</h3>
+                    <p>Preparamos toda a documentação, acompanhamos o processo e te orientamos em todas as etapas até a aprovação.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq" id="duvidas">
+        <div class="container">
+            <h2 class="section-title">Dúvidas Frequentes</h2>
+            <div class="faq-item">
+                <input type="checkbox" id="faq1">
+                <label class="faq-question" for="faq1">Quanto tempo leva o processo de visto?</label>
+                <div class="faq-answer">
+                    <p>O tempo varia conforme o tipo de visto e a demanda nos consulados. Em média, entre 3 e 12 meses, mas fazemos o acompanhamento para agilizar ao máximo.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <input type="checkbox" id="faq2">
+                <label class="faq-question" for="faq2">Vocês garantem o visto?</label>
+                <div class="faq-answer">
+                    <p>Ninguém pode garantir a aprovação de um visto, pois a decisão final é sempre do governo português. O que garantimos é o melhor trabalho possível na preparação do seu processo, aumentando muito as chances de sucesso.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <input type="checkbox" id="faq3">
+                <label class="faq-question" for="faq3">Posso fazer tudo sozinho?</label>
+                <div class="faq-answer">
+                    <p>Sim, é possível. Porém a maioria das pessoas que tenta sozinha acaba tendo documentos recusados, perdendo tempo e dinheiro. Nossa assessoria existe exatamente para evitar esses problemas e tornar o processo mais seguro.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <h2>Quer começar com segurança?</h2>
+            <p>Entre em contato agora pelo WhatsApp!</p>
+            <br>
+            <a href="https://wa.me/5511999999999?text=Olá!%20Quero%20informações%20sobre%20assessoria%20para%20Portugal"
+               class="whatsapp-btn" target="_blank">
+                Falar no WhatsApp
+            </a>
+        </div>
+    </section>
+
     <footer>
         <p>© 2026 Raízes Lusitanas - Assessoria Migratória</p>
+        <div class="social-links">
+            <a href="https://www.instagram.com/raizeslusitanas/" target="_blank" rel="noopener noreferrer">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.326 3.608 1.301.975.975 1.239 2.242 1.301 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.326 2.633-1.301 3.608-.975.975-2.242 1.239-3.608 1.301-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.326-3.608-1.301-.975-.975-1.239-2.242-1.301-3.608-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.062-1.366.326-2.633 1.301-3.608.975-.975 2.242-1.239 3.608-1.301 1.266-.058 1.646-.07 4.85-.07zM12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.324c-2.296 0-4.162-1.866-4.162-4.162s1.866-4.162 4.162-4.162 4.162 1.866 4.162 4.162-1.866 4.162-4.162 4.162zm6.406-11.845c-.796 0-1.441.645-1.441 1.441s.645 1.441 1.441 1.441 1.441-.645 1.441-1.441-.645-1.441-1.441-1.441z"/>
+                </svg>
+            </a>
+        </div>
     </footer>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Fecha o menu ao clicar em qualquer link
+        document.querySelectorAll('#navMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>
