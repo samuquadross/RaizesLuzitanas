@@ -198,72 +198,90 @@
             margin-bottom: 1.1rem;
         }
 
-        /* MOBILE */
-        @media (max-width: 768px) {
-            .menu-toggle { display: block; }
-            nav ul {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: white;
-                padding: 1rem;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-                transform: translateY(-20px);
-                opacity: 0;
-                transition: all 0.4s ease-in-out;
-            }
-            nav ul.active {
-                display: flex;
-                transform: translateY(0);
-                opacity: 1;
-            }
-            nav li { margin: 1rem 0; text-align: center; }
+        /* COMO FUNCIONA - DESKTOP (base) */
+.how-it-works { 
+    padding: 5rem 0; 
+    background: #fff; 
+}
 
-            /* Hero mobile */
-            .hero {
-                background-image: url('https://i.postimg.cc/MG9LbL25/Design-sem-nome-(7).png');
-                height: 90vh;
-                min-height: 680px;
-                align-items: flex-start;
-                padding-top: 10rem;
-                justify-content: center;
-            }
-            .hero::before { background: transparent; }
-            .hero-content {
-                text-align: center;
-                max-width: 90%;
-                margin-left: 0;
-                padding: 0 5%;
-            }
-            .hero-content h1 { font-size: 2.8rem; }
-            .hero-content p { font-size: 1.4rem; }
+.steps-wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 1.2rem;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+}
 
-            /* Sobre Nós mobile: 1 coluna + imagem em cima */
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            .about-image {
-                height: 320px;
-            }
-            .about-text {
-                text-align: center;
-                padding: 0 1rem;
-            }
-        }
 
-        .how-it-works { padding: 5rem 0; background: #fff; }
-        .steps-wrapper {
-            display: flex;
-            flex-wrap: nowrap;
-            gap: 1.2rem;
-            justify-content: center;
-            align-items: center;
-            max-width: 100%;
-        }
+/* MOBILE */
+@media (max-width: 768px) {
+    .menu-toggle { display: block; }
+    nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: white;
+        padding: 1rem;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        transform: translateY(-20px);
+        opacity: 0;
+        transition: all 0.4s ease-in-out;
+    }
+    nav ul.active {
+        display: flex;
+        transform: translateY(0);
+        opacity: 1;
+    }
+    nav li { margin: 1rem 0; text-align: center; }
+
+    /* Hero mobile */
+    .hero {
+        background-image: url('https://i.postimg.cc/MG9LbL25/Design-sem-nome-(7).png');
+        height: 90vh;
+        min-height: 680px;
+        align-items: flex-start;
+        padding-top: 10rem;
+        justify-content: center;
+    }
+    .hero::before { background: transparent; }
+    .hero-content {
+        text-align: center;
+        max-width: 90%;
+        margin-left: 0;
+        padding: 0 5%;
+    }
+    .hero-content h1 { font-size: 2.8rem; }
+    .hero-content p { font-size: 1.4rem; }
+
+    /* Sobre Nós mobile */
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    .about-image { height: 320px; }
+    .about-text {
+        text-align: center;
+        padding: 0 1rem;
+    }
+
+    /* ✅ COMO FUNCIONA - MOBILE */
+    .how-it-works .steps-wrapper {
+        flex-direction: column;
+        gap: 1.8rem;
+    }
+
+    .how-it-works .arrow-between {
+        transform: rotate(90deg);
+        font-size: 2.8rem;
+    }
+}
+
+
+
         .step-card {
             background: white;
             padding: 2rem 1.6rem;
